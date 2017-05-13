@@ -26,22 +26,27 @@ Plugin 'tpope/vim-fugitive'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
+
+if !empty($SSH_CONNECTION)
+    let g:airline_left_sep = '⮀'
+    let g:airline_left_alt_sep = '⮁'
+    let g:airline_right_sep = '⮂'
+    let g:airline_right_alt_sep = '⮃'
+    let g:airline_symbols.branch = '⭠'
+    let g:airline_symbols.readonly = '⭤'
+    let g:airline_symbols.linenr = '⭡'
+    let g:airline#extensions#tabline#left_sep = '⮀'
+endif
+
+"let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled=0
 let g:airline#extensions#whitespace#symblo='!'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_nr_show=1
-let g:airline#extensions#tabline#left_sep = '⮀'
 let g:airline#extensions#tabline#left_alt_sep = '|'
 "let g:airline_theme='luna'
-nnoremap <C-l> :bn<CR>
-nnoremap <C-h> :bp<CR>
+nnoremap <C-h> :bn<CR>
+nnoremap <C-l> :bp<CR>
 
 call vundle#end()
 filetype plugin indent on
@@ -79,7 +84,7 @@ hi CursorLine   cterm=NONE ctermbg=darkgray  ctermfg=white
 
 "Configure backspace to be able to across two lines
 set backspace=2
-set whichwrap+=<,>,h,l
+"set whichwrap+=<,>,h,l
 
 "Tab and indent
 set expandtab
@@ -116,4 +121,27 @@ set iskeyword+=_,$,@,%,#,-,.
 "other
 set mouse=c
 set t_Co=256
+set pastetoggle=<F9>
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
 
+"emacs key
+inoremap <C-a> <ESC>^i
+inoremap <C-e> <ESC>$a
+inoremap <C-f> <ESC>la
+inoremap <C-b> <ESC>ha
+inoremap <C-n> <ESC>ja
+inoremap <C-p> <ESC>ka
+inoremap <C-k> <ESC>ld$a
+
+"Gvim
+if has("gui_running")
+    colorscheme solarized
+    set guioptions=agic
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
+    set guiheadroom=0
+endif
