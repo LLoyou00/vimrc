@@ -9,6 +9,9 @@ Plugin 'VundleVim/Vundle.vim'
 "My bundles and plugin config here:
 "-----------------------------------------------------------------------------
 
+"typescript
+Plugin 'leafgarland/typescript-vim'
+
 "solarized
 Plugin 'altercation/vim-colors-solarized'
 let g:solarized_termcolors=256
