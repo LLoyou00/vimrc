@@ -148,3 +148,8 @@ if has("gui_running")
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
     set guiheadroom=0
 endif
+
+"go to last cursor location
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
